@@ -1,66 +1,176 @@
 // pages/index/index.js
+
+var leftImgs = [],
+  rightImgs = [];
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    leftHeight: 0,
+    rightHeight: 0,
+    note: [{
+        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
+        tags: ['标签1', '标签2', '标签3', '标签4标签4标签4标签4标签4标签4', 'a']
+      },
+      {
+        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      }, {
+
+        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      }, {
+
+        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      }, {
+
+        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      }, {
+
+        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      },
+      {
+        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      }, {
+
+        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
+        tags: ['标签1', '标签2', '标签3']
+      }
+    ],
+    leftImgs: [],
+    rightImgs: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    leftImgs.push(this.data.note.shift());
+    this.setData({
+      leftImgs: leftImgs
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
+  },
+
+  /**
+   * 搜索
+   */
+  search: function(e) {
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
+
+  /**
+   * 图片加载成功
+   */
+  loadImg: function (e) {
+    this.calcHeight();
+    if (this.data.note.length <= 0) {
+      return;
+    }
+    if (this.data.leftHeight <= this.data.rightHeight) {
+      leftImgs.push(this.data.note.shift());
+      this.setData({
+        leftImgs: leftImgs
+      })
+    } else {
+      rightImgs.push(this.data.note.shift());
+      this.setData({
+        rightImgs: rightImgs
+      })
+    }
+  },
+
+  calcHeight: function () {
+    const _self = this;
+    const query = wx.createSelectorQuery();
+    query.select('.left').boundingClientRect(function (res) {
+      _self.setData({
+        leftHeight: res.height
+      })
+    }).exec();
+    query.select('.right').boundingClientRect(function (res) {
+      _self.setData({
+        rightHeight: res.height
+      })
+    }).exec();
   }
 })

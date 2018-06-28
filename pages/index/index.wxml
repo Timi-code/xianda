@@ -1,2 +1,31 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<!-- pages/index/index.wxml -->
+<view class="page">
+    <!-- 搜索 -->
+    <view class="search-box">
+        <view class="search-input" bindtap="search">
+            <icon type="search" size="18" class="icon" />
+            <text class="search-text">搜索</text>
+        </view>
+    </view>
+    <!-- 列表 -->
+    <view class="content">
+        <view class="left">
+            <block wx:for="{{leftImgs}}">
+                <template is="item" data="{{...item}}"></template>
+            </block>
+        </view>
+        <view class="right">
+            <block wx:for="{{rightImgs}}">
+                <template is="item" data="{{...item}}"></template>
+            </block>
+        </view>
+    </view>
+</view>
+<template name="item">
+    <view class="item">
+        <image class="item-img" src="{{url}}" mode="widthFix" bindload="loadImg"></image>
+        <view class="item-tag">
+            <text wx:for="{{tags}}"><text class="sharp">#</text>{{item}} </text>
+        </view>
+    </view>
+</template>

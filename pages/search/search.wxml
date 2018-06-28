@@ -1,0 +1,14 @@
+<!--pages/search/search.wxml-->
+
+<view class="page">
+
+  <!-- 搜索 -->
+  <view class="search-box">
+    <view class="search-input">
+      <icon type="search" size="18" class="icon"/>
+      <input type="text" placeholder="搜索" focus/>
+    </view>
+    <view class="cancel" bindtap="cancel">取消</view>  
+  </view>
+
+</view>
