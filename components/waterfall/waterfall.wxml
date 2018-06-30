@@ -1,0 +1,23 @@
+<!--components/waterfall/waterfall.wxml-->
+
+<view class="content">
+  <view class="left">
+    <block wx:for="{{leftImgs}}" wx:key="">
+      <template is="item" data="{{...item}}"></template>
+    </block>
+  </view>
+  <view class="right">
+    <block wx:for="{{rightImgs}}" wx:key="">
+      <template is="item" data="{{...item}}"></template>
+    </block>
+  </view>
+</view>
+
+<template name="item">
+  <view class="item">
+    <image class="item-img" src="{{url}}" mode="widthFix" bindload="loadImg"></image>
+    <view class="item-tag">
+      <text wx:for="{{tags}}" wx:key=""><text class="sharp">#</text>{{item}} </text>
+    </view>
+  </view>
+</template>
