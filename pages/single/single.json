@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "waterfall-single": "/components/waterfall/waterfall"
+  }
+}

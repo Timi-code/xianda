@@ -13,59 +13,59 @@ Page({
     rightHeight: 0,
     note: [{
         url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['标签1', '标签2', '标签3', '标签4标签4标签4标签4标签4标签4', 'a']
+        tags: ['1', '标签2', '标签3', '标签4标签4标签4标签4标签4标签4', 'a']
       },
       {
         url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['2', '标签2', '标签3']
       },
       {
         url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['3', '标签2', '标签3']
       }, {
 
         url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['4', '标签2', '标签3']
       },
       {
         url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['5', '标签2', '标签3']
       },
       {
         url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['6', '标签2', '标签3']
       },
       {
         url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['7', '标签2', '标签3']
       }, {
 
         url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['8', '标签2', '标签3']
       },
       {
         url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['9', '标签2', '标签3']
       }, {
 
         url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['10', '标签2', '标签3']
       },
       {
         url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['11', '标签2', '标签3']
       }, {
 
         url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['12', '标签2', '标签3']
       },
       {
         url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['13', '标签2', '标签3']
       }, {
 
         url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['标签1', '标签2', '标签3']
+        tags: ['14', '标签2', '标签3']
       }
     ],
     leftImgs: [],
@@ -159,6 +159,9 @@ Page({
     }
   },
 
+  /**
+   * 计算高度
+   */
   calcHeight: function () {
     const _self = this;
     const query = wx.createSelectorQuery();
@@ -172,5 +175,12 @@ Page({
         rightHeight: res.height
       })
     }).exec();
+  },
+
+  /**
+   * 下拉
+   */
+  onPullDownRefresh: function() {
+    console.log('下拉');
   }
 })

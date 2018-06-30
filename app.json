@@ -1,12 +1,34 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/single/single",
+    "pages/mine/mine"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "鲜搭",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "搭配",
+      "iconPath": "assets/images/store.png",
+      "selectedIconPath": "assets/images/store.png"
+    },
+    {
+      "pagePath": "pages/single/single",
+      "text": "单品",
+      "iconPath": "assets/images/store.png",
+      "selectedIconPath": "assets/images/store.png"
+    },
+    {
+      "pagePath": "pages/mine/mine",
+      "text": "我的",
+      "iconPath": "assets/images/store.png",
+      "selectedIconPath": "assets/images/store.png"
+    }]
   }
 }
