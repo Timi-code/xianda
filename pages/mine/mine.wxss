@@ -1,1 +1,34 @@
 /* pages/mine/mine.wxss */
+
+Page {
+  background-color: #F2F4F5;
+}
+
+.page {
+}
+
+.page .user-box {
+  display: flex;
+  padding: 10rpx 32rpx;
+  align-items: center;
+  background-color: #ffffff;
+  margin-top: 30rpx;
+}
+
+.page .user-box .avatar {
+  width: 112rpx;
+  height: 112rpx;
+  background: #ebebed;
+  border-radius: 8px;
+}
+
+.page .user-box .avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.page .user-box .user-name {
+  font-size: 36rpx;
+  color: #000;
+  text-indent: 20rpx;
+}

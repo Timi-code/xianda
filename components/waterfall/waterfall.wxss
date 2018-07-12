@@ -1,7 +1,6 @@
 /* components/waterfall/waterfall.wxss */
 
 .content {
-  margin: 0 20rpx;
   text-align: justify;
   margin-top: 20rpx;
   overflow: hidden;

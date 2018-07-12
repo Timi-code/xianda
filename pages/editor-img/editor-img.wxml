@@ -1,0 +1,26 @@
+<!--pages/editor-img/editor-img.wxml-->
+
+<import src="../../plugins/we-cropper/we-cropper.wxml" />
+
+<view class="cropper-wrapper">
+  <template class="canvas" is="we-cropper" data="{{...cropperOpt}}" />
+  <view class="cropper-buttons">
+    <view class="select-ratio">
+      <view class="item {{activeShape === 0 ? 'active' : ''}}" bindtap="changeRatio" data-ratio="1">
+        <view class="shape shape1"></view>
+        <view>1:1</view>
+      </view>
+      <view class="item {{activeShape === 1 ? 'active' : ''}}" bindtap="changeRatio" data-ratio="2">
+        <view class="shape shape2"></view>
+        <view>3:4</view>
+      </view>
+      <view class="item {{activeShape === 2 ? 'active' : ''}}" bindtap="changeRatio" data-ratio="3">
+        <view class="shape shape3"></view>
+        <view>9:16</view>
+      </view>
+    </view>
+    <view class="getCropperImage" bindtap="getCropperImage">
+      完成
+    </view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<!-- pages/single-detail/single-detail.wxml -->
+<view class="page">
+
+    <!-- 单品信息 -->
+    <view class="single-info">
+        <view class="single-img">
+            <image src="{{src}}" bindtap="previewImg"/>
+        </view>
+        <view class="single-tag-box">
+            <view class="single-tag">
+                <text wx:for="{{tags}}" wx:key=""><text class="sharp">#</text>{{item}} </text>
+            </view>
+            <view class="single-add-group">
+                <image src="{{moreImg}}" bindtap="actionSheet"/>
+            </view>
+        </view>
+    </view>
+
+    <!-- 加入的搭配 -->
+    <view class="groups">
+      <view class="title">加入的搭配 (5)</view>
+      <waterfall imgs="{{notes}}"></waterfall>
+    </view>
+</view>

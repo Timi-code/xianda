@@ -14,7 +14,7 @@
 </view>
 
 <template name="item">
-  <view class="item">
+  <view class="item" bindtap="toDetail">
     <image class="item-img" src="{{url}}" mode="widthFix" bindload="loadImg"></image>
     <view class="item-tag">
       <text wx:for="{{tags}}" wx:key=""><text class="sharp">#</text>{{item}} </text>

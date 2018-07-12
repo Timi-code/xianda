@@ -8,5 +8,7 @@
     </view>
   </view>
   <!-- 列表 -->
-  <waterfall-index imgs="{{note}}"></waterfall-index>
+  <view class="lists">
+    <waterfall-index imgs="{{note}}" bindtodetail="toDetail"></waterfall-index>
+  </view>
 </view>

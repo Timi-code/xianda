@@ -1,0 +1,71 @@
+/* pages/group-detail/group-detail.wxss */
+
+.page {
+}
+
+.page .group-info {
+  display: flex;
+  flex-direction: column;
+  width: 686rpx;
+  margin: 0 auto;
+  border-bottom: 1px solid #f0f0f2;
+}
+
+.page .group-info image {
+  width: 686rpx;
+  height: 686rpx;
+  border-radius: 10rpx;
+}
+
+.page .group-info .group-tag-box {
+  display: flex;
+}
+
+.page .group-info .group-tag-box .group-tag {
+  flex: 1;
+  padding-bottom: 10rpx;
+}
+
+.page .group-info .group-tag-box .group-tag text {
+  font-size: 27rpx;
+  line-height: 38rpx;
+  color: #000;
+}
+
+.page .group-info .group-tag-box .group-tag .sharp {
+  color: #ccc;
+}
+
+.page .group-info .group-tag-box .group-add-single {
+  width: 100rpx;
+}
+
+.page .group-info .group-tag-box .group-add-single image {
+  width: 74rpx;
+  height: 74rpx;
+}
+
+/* 加入的单品 */
+
+.page .single {
+  padding: 0 32rpx;
+}
+
+.page .single .title {
+  font-size: 37rpx;
+  font-weight: bold;
+  color: #1c1c1c;
+  line-height: 3;
+}
+
+.page .single .content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.page .single .content image {
+  width: 226rpx;
+  height: 226rpx;
+  margin-top: 4rpx;
+}

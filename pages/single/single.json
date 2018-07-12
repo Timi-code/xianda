@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "waterfall-single": "/components/waterfall/waterfall"
-  }
+  },
+  "navigationBarTitleText": "单品"
 }

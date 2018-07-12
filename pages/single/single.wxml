@@ -20,5 +20,12 @@
   <view style="height: 8rpx; background-color: #ddd;"></view>
 
   <!-- 列表 -->
-  <waterfall-single imgs="{{notes}}"></waterfall-single>
+  <view class="lists">
+    <waterfall-single imgs="{{notes}}" bindtodetail="toDetail"></waterfall-single>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add" bindtap="addSingle">
+    <image src="/assets/images/add.png"></image>
+  </view>
 </view>

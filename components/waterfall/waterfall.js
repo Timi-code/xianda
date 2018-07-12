@@ -22,6 +22,11 @@ Component({
     rightImgs: []
   },
 
+  created: function() {
+    leftImgs = [];
+    rightImgs = [];
+  },
+
   ready: function() {
     leftImgs.push(this.properties.imgs.shift());
     this.setData({
@@ -52,7 +57,7 @@ Component({
             rightImgs: rightImgs
           })
         }
-      });      
+      });
     },
 
     /**
@@ -61,19 +66,27 @@ Component({
     calcHeight: function(cb) {
       const _self = this;
       const query = wx.createSelectorQuery().in(this);
-      query.select('.left').boundingClientRect(function (res) {
+      query.select('.left').boundingClientRect(function(res) {
         _self.setData({
           leftHeight: res.height
         })
       }).exec(
-        query.select('.right').boundingClientRect(function (res) {
+        query.select('.right').boundingClientRect(function(res) {
           _self.setData({
             rightHeight: res.height
           })
         }).exec(
           cb
-        )        
+        )
       );
     },
+
+    /**
+     * 点击单个item
+     */
+    toDetail: function(e) {
+      console.log(e);
+      this.triggerEvent("todetail", e);
+    }
   }
 })

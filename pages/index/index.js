@@ -182,5 +182,14 @@ Page({
    */
   onPullDownRefresh: function() {
     console.log('下拉');
+  },
+
+  /**
+   * 搭配详情页
+   */
+  toDetail: function(e) {
+    wx.navigateTo({
+      url: '/pages/group-detail/group-detail',
+    })
   }
 })

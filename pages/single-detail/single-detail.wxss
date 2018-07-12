@@ -1,0 +1,59 @@
+/* pages/single-detail/single-detail.wxss */
+
+.page {
+}
+
+.page .single-info {
+  display: flex;
+  flex-direction: column;
+  width: 686rpx;
+  margin: 0 auto;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.page .single-info image {
+  width: 686rpx;
+  height: 686rpx;
+  border-radius: 10rpx;
+}
+
+.page .single-info .single-tag-box {
+  display: flex;
+}
+
+.page .single-info .single-tag-box .single-tag {
+  flex: 1;
+  padding-bottom: 10rpx;
+}
+
+.page .single-info .single-tag-box .single-tag text {
+  font-size: 27rpx;
+  line-height: 38rpx;
+  color: #000;
+}
+
+.page .single-info .single-tag-box .single-tag .sharp {
+  color: #ccc;
+}
+
+.page .single-info .single-tag-box .single-add-group {
+  width: 100rpx;
+}
+
+.page .single-info .single-tag-box .single-add-group image {
+  width: 74rpx;
+  height: 74rpx;
+}
+
+/* 加入的搭配 */
+
+.page .groups {
+  padding: 0 32rpx;
+}
+
+.page .groups .title {
+  font-size: 37rpx;
+  font-weight: bold;
+  color: #1c1c1c;
+  line-height: 3;
+}

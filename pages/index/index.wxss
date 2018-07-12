@@ -30,3 +30,8 @@
     font-size: 32rpx;
     color: #ACACAD;
 }
+
+
+.page .lists {
+  padding: 0 32rpx;
+}

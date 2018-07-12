@@ -1,9 +1,12 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/group-detail/group-detail",
     "pages/search/search",
     "pages/single/single",
-    "pages/mine/mine"
+    "pages/single-detail/single-detail",
+    "pages/mine/mine",
+    "pages/editor-img/editor-img"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -15,20 +18,20 @@
     "list": [{
       "pagePath": "pages/index/index",
       "text": "搭配",
-      "iconPath": "assets/images/store.png",
-      "selectedIconPath": "assets/images/store.png"
+      "iconPath": "assets/images/groups.png",
+      "selectedIconPath": "assets/images/groups-active.png"
     },
     {
       "pagePath": "pages/single/single",
       "text": "单品",
-      "iconPath": "assets/images/store.png",
-      "selectedIconPath": "assets/images/store.png"
+      "iconPath": "assets/images/single.png",
+      "selectedIconPath": "assets/images/single-active.png"
     },
     {
       "pagePath": "pages/mine/mine",
       "text": "我的",
-      "iconPath": "assets/images/store.png",
-      "selectedIconPath": "assets/images/store.png"
+      "iconPath": "assets/images/mine.png",
+      "selectedIconPath": "assets/images/mine-active.png"
     }]
   }
 }

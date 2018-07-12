@@ -34,7 +34,14 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "图片编辑",
+					"pathName": "pages/editor-img/editor-img",
+					"query": ""
+				}
+			]
 		}
 	}
 }
