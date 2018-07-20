@@ -1,0 +1,104 @@
+/* pages/edit-single/edit-single.wxss */
+
+page {
+  background-color: #f2f4f5;
+}
+
+/* 选择图片 */
+
+.selector-box {
+  margin: 32rpx 0;
+  padding: 32rpx 0 32rpx 32rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selector-box .select-img {
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 8rpx;
+}
+
+.selector-box .arrow {
+  width: 68rpx;
+  height: 88rpx;
+}
+
+/* 标签 */
+
+.label {
+  font-size: 28rpx;
+  color: #79797a;
+  line-height: 72rpx;
+  text-indent: 32rpx;
+}
+
+.tag-box {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tag-box .tags {
+  text-indent: 32rpx;
+  font-size: 32rpx;
+  color: #bbbbbd;
+  line-height: 88rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tag-box .arrow {
+  width: 68rpx;
+  height: 88rpx;
+}
+
+/* 选择框 */
+
+.picker-box {
+  margin-top: 48rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  background-color: #fff;
+}
+
+.picker-box .label {
+  text-indent: 32rpx;
+  font-size: 34rpx;
+  color: #000;
+}
+
+.picker-box picker {
+  flex: 1;
+}
+
+.picker-box .picker {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.picker-box .picker .holder {
+  font-size: 32rpx;
+  color: #79797a;
+}
+
+.picker-box .picker .selected {
+  font-size: 32rpx;
+  color: #52b531;
+}
+
+.picker-box .picker .arrow {
+  width: 68rpx;
+  height: 88rpx;
+}
+
+/* 提交 */
+.submit-box {
+  margin: 48rpx 32rpx;
+}

@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.2.0",
 	"appid": "wx078587b498a2acb0",
 	"projectname": "FreshMix",
 	"isGameTourist": false,
@@ -37,8 +37,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "图片编辑",
-					"pathName": "pages/editor-img/editor-img",
+					"name": "单品编辑",
+					"pathName": "pages/edit-single/edit-single",
 					"query": ""
 				}
 			]
