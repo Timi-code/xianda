@@ -6,7 +6,8 @@
     "pages/single/single",
     "pages/single-detail/single-detail",
     "pages/mine/mine",
-    "pages/editor-img/editor-img"
+    "pages/editor-img/editor-img",
+    "pages/edit-single/edit-single"
   ],
   "window":{
     "backgroundTextStyle":"light",

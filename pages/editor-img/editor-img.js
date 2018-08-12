@@ -36,13 +36,21 @@ Page({
    * 生成新图
    */
   getCropperImage() {
+    const pages = getCurrentPages();
     this.wecropper.getCropperImage((src) => {
       if (src) {
-        console.log(src)
-        wx.previewImage({
-          current: '', // 当前显示图片的http链接
-          urls: [src] // 需要预览的图片http链接列表
+        console.log(src);
+        pages[pages.length - 2].setData({
+          src: src
         })
+        wx.navigateBack()
+        // wx.navigateTo({
+        //   url: `/pages/edit-single/edit-single?src=${src}&step=-2`,
+        // })
+        // wx.previewImage({
+        //   current: '', // 当前显示图片的http链接
+        //   urls: [src] // 需要预览的图片http链接列表
+        // })
       } else {
         console.log('获取图片地址失败，请稍后重试')
       }
