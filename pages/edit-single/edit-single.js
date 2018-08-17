@@ -11,7 +11,8 @@ Page({
     temperatureIndex: null,
     classArray: ['上身装', '下身装', '连身装', '鞋', '包、袋'],
     classIndex: null,
-    step: -1
+    step: -1,
+    tags: []
   },
 
   /**
@@ -37,7 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    console.log(this.data.tags);
   },
 
   /**
@@ -100,6 +101,16 @@ Page({
   bindClassChange: function(e) {
     this.setData({
       classIndex: e.detail.value
+    })
+  },
+
+  /**
+   * 设置标签
+   */
+  setTags: function($event) {
+    wx.setStorageSync('tags', this.data.tags);
+    wx.navigateTo({
+      url: '/pages/edit-tags/edit-tags',
     })
   },
 

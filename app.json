@@ -7,7 +7,8 @@
     "pages/single-detail/single-detail",
     "pages/mine/mine",
     "pages/editor-img/editor-img",
-    "pages/edit-single/edit-single"
+    "pages/edit-single/edit-single",
+    "pages/edit-tags/edit-tags"
   ],
   "window":{
     "backgroundTextStyle":"light",

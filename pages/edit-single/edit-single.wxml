@@ -18,8 +18,8 @@
   </view>
 
   <view class="label">标签</view>
-  <view class="tag-box">
-    <view class="tags">标签1，标签2，标签3，标签4，标签5，标签6，标签7</view>
+  <view class="tag-box" bindtap="setTags">
+    <view class="tags">{{tags.length > 0 ? tags : '点击设置标签'}}</view>
     <image src="{{arrow}}" class="arrow"></image>
   </view>
 
