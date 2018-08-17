@@ -1,0 +1,45 @@
+/* components/tags/tags.wxss */
+page {
+  height: 100%;
+}
+
+.page {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.tags-box {
+  overflow: hidden;
+  margin: 0 10rpx;
+  border-bottom: 1px solid #bbb;
+  padding-top: 10rpx;
+}
+
+.tags-box .tag {
+  float: left;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  border: 1px solid green;
+  border-radius: 20rpx;
+  padding: 0 20rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.tags-box .tag.active {
+  color: #fff;
+  background-color: green;
+}
+
+.tags-box .tag-input {
+  float: left;
+  min-height: unset;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: auto;
+  font-size: 24rpx;
+  border: 1px dotted green;
+  border-radius: 20rpx;
+  padding: 0 20rpx;
+  margin-bottom: 10rpx;
+}
