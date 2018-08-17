@@ -1,0 +1,3 @@
+<!--pages/edit-tags/edit-tags.wxml-->
+
+<tags tags="{{tags}}" bindchange="change"></tags>
