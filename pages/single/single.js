@@ -1,4 +1,7 @@
 // pages/single/single.js
+
+const network = require('../../utils/util.js');
+
 Page({
 
   /**
@@ -73,7 +76,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getLists(1);
   },
 
   /**
@@ -131,6 +134,18 @@ Page({
   search: function(e) {
     wx.navigateTo({
       url: '/pages/search/search',
+    })
+  },
+
+  /**
+   * 获取列表
+   */
+  getLists: function(e) {
+    network.request({
+      url: '/clothing',
+      success: function(res) {
+        console.log(res);
+      }
     })
   },
 

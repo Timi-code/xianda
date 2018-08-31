@@ -33,14 +33,12 @@ function request(params) {
     complete
   } = params;
   return wx.request({
-    // url: 'http://47.94.130.167:8081' + url,
-    url: 'http://localhost:3000' + url,
+    url: 'http://101.200.56.63/api' + url,
     data: {
-      token: token,
       ...data
     },
     header: { ...header,
-      'token': token
+      'Authorization': token
     },
     method: method,
     dataType: dataType,

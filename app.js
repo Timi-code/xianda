@@ -13,6 +13,18 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res);
+        network.request({
+          url: '/auth/wechat/access-token',
+          data: {
+            code: res.code
+          },
+          success: function(result) {
+            if(result.data.code === 200){
+              wx.setStorageSync('token', 'Bearer ' + result.data.data.token);
+            }
+          }
+        })
       }
     })
     // 获取用户信息
