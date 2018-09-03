@@ -14,6 +14,7 @@ Page({
   onLoad: function (options) {
     wx.getSetting({
       success: function (res) {
+        console.log(res);
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
@@ -77,5 +78,10 @@ Page({
 
   bindGetUserInfo: function (e) {
     console.log(e.detail.userInfo)
-  }
+  },
+  getPhoneNumber: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+  } 
 })

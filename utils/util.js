@@ -15,6 +15,9 @@ const formatNumber = n => {
 }
 
 const urlConfig = {
+  host: 'http://101.200.56.63/api',
+  token: '/auth/wechat/access-token',
+  register: '/auth/wechat/register',
   wear: '/wear',
   clothing: '/clothing',
 }
@@ -33,7 +36,7 @@ function request(params) {
     complete
   } = params;
   return wx.request({
-    url: 'http://101.200.56.63/api' + url,
+    url: urlConfig.host + url,
     data: {
       ...data
     },
@@ -49,7 +52,33 @@ function request(params) {
   });
 }
 
+/**
+ * 登录
+ */
+function login(cb) {
+  wx.login({
+    success: res => {
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      wx.request({
+        url: urlConfig.host + urlConfig.token,
+        data: {
+          code: res.code
+        },
+        success: function(result) {
+          if (result.data.code === 200) {
+            wx.setStorageSync('token', 'Bearer ' + result.data.data.token);
+            if (cb) {
+              cb();
+            }
+          }
+        }
+      })
+    }
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
-  request: request
+  request: request,
+  login: login
 }
