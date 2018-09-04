@@ -52,6 +52,27 @@ function request(params) {
   });
 }
 
+function register(cb) {
+  wx.login({
+    success: function(res) {
+      wx.request({
+        url: urlConfig.host + urlConfig.register,
+        method: 'POST',
+        data: {
+          code: res.code,
+          mobile: '15086883148',
+          avatar: null,
+          nickname: null
+        },
+        success: function(res) {
+          console.log(res);
+          cb();
+        }
+      })
+    }
+  })
+}
+
 /**
  * 登录
  */
@@ -80,5 +101,7 @@ function login(cb) {
 module.exports = {
   formatTime: formatTime,
   request: request,
+  urlConfig: urlConfig,
+  register: register,
   login: login
 }

@@ -80,13 +80,14 @@ Page({
    */
   onLoad: function(options) {
 
-    network.login();
-
     leftImgs.push(this.data.note.shift());
     this.setData({
       leftImgs: leftImgs
     })
-    this.getLists();
+
+    if (wx.getStorageSync('token')) {
+      this.getLists();
+    }
   },
 
   /**
