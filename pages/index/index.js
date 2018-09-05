@@ -87,6 +87,8 @@ Page({
 
     if (wx.getStorageSync('token')) {
       this.getLists();
+    } else {
+      network.login();
     }
   },
 
