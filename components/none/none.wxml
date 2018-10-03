@@ -1,0 +1,13 @@
+<!--components/none/none.wxml-->
+
+<view class="page">
+  <view class="box">
+    <view class="top">
+      <image class="logo" src="{{src}}"></image>
+    </view>
+    <view class="bottom">
+      <view class="tips">点击右下角添加你的{{target}}</view>
+      <view class="sub">添加的{{target}}会显示在这里</view>
+    </view>
+  </view>
+</view>

@@ -19,7 +19,6 @@ Component({
     inputText: '',
     activeIndex: null
   },
-
   /**
    * 组件的方法列表
    */

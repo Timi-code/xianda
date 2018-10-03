@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "waterfall-single": "/components/waterfall/waterfall"
+    "waterfall-single": "/components/waterfall/waterfall",
+    "none": "/components/none/none"
   },
-  "navigationBarTitleText": "单品"
+  "navigationBarTitleText": "单品",
+  "enablePullDownRefresh": true
 }

@@ -9,74 +9,15 @@ Page({
    */
   data: {
     active: 0,
-    note: [{
-      url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-      tags: ['1', '标签2', '标签3', '标签4标签4标签4标签4标签4标签4', 'a']
-    }],
-    notes: [{
-      url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-      tags: ['1', '标签2', '标签3', '标签4标签4标签4标签4标签4标签4', 'a']
-    },
-    {
-      url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-      tags: ['2', '标签2', '标签3']
-    },
-    {
-      url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-      tags: ['3', '标签2', '标签3']
-    }, {
-
-      url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-      tags: ['4', '标签2', '标签3']
-    },
-    {
-      url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-      tags: ['5', '标签2', '标签3']
-    },
-    {
-      url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-      tags: ['6', '标签2', '标签3']
-    },
-    {
-      url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-      tags: ['7', '标签2', '标签3']
-    }, {
-
-      url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-      tags: ['8', '标签2', '标签3']
-    },
-    {
-      url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-      tags: ['9', '标签2', '标签3']
-    }, {
-
-      url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-      tags: ['10', '标签2', '标签3']
-    },
-    {
-      url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-      tags: ['11', '标签2', '标签3']
-    }, {
-
-      url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-      tags: ['12', '标签2', '标签3']
-    },
-    {
-      url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-      tags: ['13', '标签2', '标签3']
-    }, {
-
-      url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-      tags: ['14', '标签2', '标签3']
-    }
-    ]
+    notes: null,
+    onPull: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getLists(1);
+    this.getLists();
   },
 
   /**
@@ -111,7 +52,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.setData({
+      onPull: true
+    })
+    wx.showNavigationBarLoading(); // 在标题栏中显示加载图标
+    this.getLists();
   },
 
   /**
@@ -141,30 +86,46 @@ Page({
    * 获取列表
    */
   getLists: function(e) {
+    const _self = this;
+    const data = this.data.active ? {category_id : this.data.active} : {};
     network.request({
       url: '/clothing',
+      data: data,
       success: function(res) {
-        console.log(res);
+        _self.setData({
+          notes: res.data
+        })
+        if (_self.data.onPull) {
+          _self.setData({
+            onPull: false
+          })
+          wx.hideNavigationBarLoading(); // 完成停止加载
+          wx.stopPullDownRefresh();
+        }
       }
     })
   },
 
   changeTab: function(e) {
     this.setData({
-      active: parseInt(e.currentTarget.dataset.index)
+      active: parseInt(e.currentTarget.dataset.index),
+      notes: null
     })
+    this.getLists();
   },
 
-  toDetail: function(e){
-    console.log(e);
+  /**
+   * 点击去往详情页面
+   */
+  toDetail: function(e) {
     wx.navigateTo({
-      url: '/pages/single-detail/single-detail',
+      url: `/pages/single-detail/single-detail?id=${e.detail}`,
     })
   },
 
   addSingle: function(e) {
     wx.navigateTo({
-      url: '/pages/edit-single/edit-single',
+      url: '/pages/add-single/add-single',
     })
     // wx.chooseImage({
     //   count: 1, // 默认9

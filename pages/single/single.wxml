@@ -19,8 +19,11 @@
 
   <view style="height: 8rpx; background-color: #ddd;"></view>
 
+  <!-- 空列表 -->
+  <none class="none" target="single" wx:if="{{!notes || notes.length === 0}}"></none>
+
   <!-- 列表 -->
-  <view class="lists">
+  <view class="lists" wx:if="{{notes}}">
     <waterfall-single imgs="{{notes}}" bindtodetail="toDetail"></waterfall-single>
   </view>
 

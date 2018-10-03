@@ -1,41 +1,29 @@
 // pages/group-detail/group-detail.js
+
+const network = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    src: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-    tags: ['3行文字这就是一个很长', '3行文字这就是一个很长', '3行文字这就是一个很长', '3行文字这就是一个很长', '1232135', '123120000', '1123123', '1232135', '123120000'],
+    id: null,
+    src: null,
+    tags: null,
     moreImg: '/assets/images/more-circle.png',
-    notes: [{
-        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['1', '标签2', '标签3']
-      },
-      {
-        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['2', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['3', '标签2', '标签3']
-      }, {
-
-        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['4', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['5', '标签2', '标签3']
-      }
-    ]
+    clothing: [],
+    reload: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      id: options.id
+    })
+    this.getDetail();
   },
 
   /**
@@ -49,7 +37,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (this.data.reload) {
+      this.setData({
+        src: null,
+        tags: null,
+        clothing: [],
+        reload: false
+      })
+      this.getDetail();
+    }
   },
 
   /**
@@ -87,13 +83,46 @@ Page({
 
   },
 
-  actionSheet: function(e) {
-    wx.showActionSheet({
-      itemList: ['加入单品', '编辑'],
+  /**
+   * 获取详情
+   */
+  getDetail: function() {
+    const _self = this;
+    network.request({
+      url: network.urlConfig.wear + '/' + _self.data.id,
       success: function(res) {
-        console.log(res.tapIndex)
+        const data = res.data;
+        _self.setData({
+          src: data.images,
+          tags: data.tags,
+          clothing: data.clothing.data
+        })
+      }
+    })
+  },
+
+  /**
+   * 添加单品
+   */
+  actionSheet: function(e) {
+    const _self = this;
+    wx.showActionSheet({
+      itemList: ['加入单品', '编辑', '取消'],
+      success: function(res) {
+        if (res.tapIndex === 0) {
+          wx.navigateTo({
+            url: `/pages/group-single-add/group-single-add?id=${_self.data.id}`,
+          })
+        } else if (res.tapIndex === 1) {
+          wx.navigateTo({
+            url: `/pages/edit-group/edit-group?id=${_self.data.id}`,
+          })
+        }
       },
       fail: function(res) {
+        wx.showToast({
+          title: '加入失败',
+        })
         console.log(res.errMsg)
       }
     })

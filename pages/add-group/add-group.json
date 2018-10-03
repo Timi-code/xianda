@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "add-group-form": "/components/group-form/group-form"
+  },
+  "navigationBarTitleText": "添加搭配"
+}

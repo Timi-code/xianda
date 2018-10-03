@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "edit-group-form": "/components/group-form/group-form"
+  },
+  "navigationBarTitleText": "编辑搭配"
+}

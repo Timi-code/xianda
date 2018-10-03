@@ -1,3 +1,6 @@
 {
+  "usingComponents": {
+    "add-single-form": "/components/single-form/single-form"
+  },
   "navigationBarTitleText": "编辑单品"
 }

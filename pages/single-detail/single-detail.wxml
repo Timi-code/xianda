@@ -18,7 +18,7 @@
 
     <!-- 加入的搭配 -->
     <view class="groups">
-      <view class="title">加入的搭配 (5)</view>
-      <waterfall imgs="{{notes}}"></waterfall>
+      <view class="title">加入的搭配 ({{notes ? notes.length : 0}})</view>
+      <waterfall imgs="{{notes}}" wx:if="{{notes.length > 0}}"></waterfall>
     </view>
 </view>

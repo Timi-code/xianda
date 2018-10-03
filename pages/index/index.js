@@ -13,66 +13,11 @@ Page({
   data: {
     leftHeight: 0,
     rightHeight: 0,
-    note: [{
-        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['1', '标签2', '标签3', '标签4标签4标签4标签4标签4标签4', 'a']
-      },
-      {
-        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['2', '标签2', '标签3']
-      },
-      {
-        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['3', '标签2', '标签3']
-      }, {
-
-        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['4', '标签2', '标签3']
-      },
-      {
-        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['5', '标签2', '标签3']
-      },
-      {
-        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['6', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['7', '标签2', '标签3']
-      }, {
-
-        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['8', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['9', '标签2', '标签3']
-      }, {
-
-        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['10', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['11', '标签2', '标签3']
-      }, {
-
-        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['12', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['13', '标签2', '标签3']
-      }, {
-
-        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['14', '标签2', '标签3']
-      }
-    ],
+    notes: null,
     leftImgs: [],
     rightImgs: [],
     keywords: '',
+    reload: false
   },
 
   /**
@@ -80,16 +25,21 @@ Page({
    */
   onLoad: function(options) {
 
-    leftImgs.push(this.data.note.shift());
-    this.setData({
-      leftImgs: leftImgs
-    })
-
-    if (wx.getStorageSync('token')) {
-      this.getLists();
+    // 获取token过期时间
+    const exprieDate = wx.getStorageSync('exprieDate');
+    if (!exprieDate || exprieDate <= Date.now()) {
+      network.getToken(() => {
+        this.getLists();
+      });
     } else {
-      network.login();
+      this.getLists();
     }
+
+    setTimeout(() => {
+      // this.setData({
+      //   notes: []
+      // })
+    }, 1000);
   },
 
   /**
@@ -101,7 +51,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (this.data.reload) {
+      this.setData({
+        reload: false,
+        notes: null
+      })
+      this.getLists();
+    }
   },
 
   /**
@@ -122,7 +78,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    wx.startPullDownRefresh(() => {
+      console.log('success');
+    })
   },
 
   /**
@@ -145,14 +103,16 @@ Page({
   getLists: function() {
     const _self = this;
     network.request({
-      url: '/wear',
+      url: network.urlConfig.wear,
       data: {
         page: 0,
         page_size: 20,
         keywords: _self.data.keywords
       },
       success: function(res) {
-        console.log(res);
+        _self.setData({
+          notes: res.data
+        })
       }
     })
   },
@@ -165,44 +125,10 @@ Page({
       url: '/pages/search/search',
     })
   },
-
-  /**
-   * 图片加载成功
-   */
-  loadImg: function(e) {
-    this.calcHeight();
-    if (this.data.note.length <= 0) {
-      return;
-    }
-    if (this.data.leftHeight <= this.data.rightHeight) {
-      leftImgs.push(this.data.note.shift());
-      this.setData({
-        leftImgs: leftImgs
-      })
-    } else {
-      rightImgs.push(this.data.note.shift());
-      this.setData({
-        rightImgs: rightImgs
-      })
-    }
-  },
-
-  /**
-   * 计算高度
-   */
-  calcHeight: function() {
-    const _self = this;
-    const query = wx.createSelectorQuery();
-    query.select('.left').boundingClientRect(function(res) {
-      _self.setData({
-        leftHeight: res.height
-      })
-    }).exec();
-    query.select('.right').boundingClientRect(function(res) {
-      _self.setData({
-        rightHeight: res.height
-      })
-    }).exec();
+  addGroup: function(e) {
+    wx.navigateTo({
+      url: '/pages/add-group/add-group',
+    })
   },
 
   /**
@@ -217,7 +143,7 @@ Page({
    */
   toDetail: function(e) {
     wx.navigateTo({
-      url: '/pages/group-detail/group-detail',
+      url: `/pages/group-detail/group-detail?id=${e.detail}`,
     })
   }
 })

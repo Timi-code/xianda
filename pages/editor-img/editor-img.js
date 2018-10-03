@@ -1,5 +1,8 @@
 import WeCropper from '../../plugins/we-cropper/we-cropper.js'
 
+const network = require('../../utils/util.js')
+const qiniuUploader = require('../../plugins/qiniu/qiniuUploader.js')
+
 const device = wx.getSystemInfoSync();
 const width = device.windowWidth;
 var height;
@@ -20,7 +23,8 @@ Page({
       }
     },
     src: '',
-    activeShape: 0
+    activeShape: 0,
+    saving: false
   },
   touchStart(e) {
     this.wecropper.touchStart(e)
@@ -36,21 +40,52 @@ Page({
    * 生成新图
    */
   getCropperImage() {
+    const _self = this;
     const pages = getCurrentPages();
+    // 防止重复点击
+    if (_self.data.saving) {
+      return;
+    }
+    _self.setData({
+      saving: true
+    })
     this.wecropper.getCropperImage((src) => {
       if (src) {
-        console.log(src);
-        pages[pages.length - 2].setData({
-          src: src
+        // 获取七牛token
+        network.request({
+          url: network.urlConfig.uploadImg,
+          success: data => {
+            wx.showLoading({
+              title: '保存图片中'
+            })
+
+            // 上传到七牛
+            qiniuUploader.upload(src, res => {
+              pages[pages.length - 2].setData({
+                src: res.imageURL
+              });
+              wx.hideLoading();
+              wx.navigateBack();
+            }, err => {
+              wx.hideLoading();
+              console.log('上传失败', err);
+              _self.setData({
+                saving: false
+              })
+            }, {
+              region: 'ECN',
+              domain: network.urlConfig.domain,
+              uptoken: data.data.token
+            }, res => {
+              console.log('上传进度', res);
+            })
+          },
+          fail: () => {
+            _self.setData({
+              saving: false
+            })
+          }
         })
-        wx.navigateBack()
-        // wx.navigateTo({
-        //   url: `/pages/edit-single/edit-single?src=${src}&step=-2`,
-        // })
-        // wx.previewImage({
-        //   current: '', // 当前显示图片的http链接
-        //   urls: [src] // 需要预览的图片http链接列表
-        // })
       } else {
         console.log('获取图片地址失败，请稍后重试')
       }
@@ -79,7 +114,7 @@ Page({
     })
   },
   onLoad(option) {
-    height = wx.getSystemInfoSync().windowHeight -120;
+    height = wx.getSystemInfoSync().windowHeight - 120;
     if (option.path) {
       this.setData({
         'cropperOpt.src': option.path,

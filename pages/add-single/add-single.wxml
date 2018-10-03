@@ -1,0 +1,3 @@
+<!--pages/add-single/add-single.wxml-->
+
+<add-single-form src="{{src}}" classes="{{classes}}" classArray="{{classArray}}" classIndex="{{classIndex}}" tags="{{tags}}" disabled="{{saving}}" bindsave="save"></add-single-form>

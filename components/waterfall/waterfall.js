@@ -10,7 +10,15 @@ Component({
   properties: {
     imgs: {
       type: Array,
-      value: []
+      value: [],
+      observer: function (newVal, oldVal, changedPath) {
+        this.data.images = newVal;
+        console.log('---------', newVal);
+      }
+    },
+    choice: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -18,20 +26,21 @@ Component({
    * 组件的初始数据
    */
   data: {
+    images: null,
     leftImgs: [],
-    rightImgs: []
+    rightImgs: [],
+    choicedId: []
   },
 
   created: function() {
-    leftImgs = [];
-    rightImgs = [];
+    
   },
 
   ready: function() {
-    leftImgs.push(this.properties.imgs.shift());
-    this.setData({
-      leftImgs: leftImgs
-    })
+    this.imgsChange();
+    // this.setData({
+    //   leftImgs: [this.data.images[0]]
+    // })
   },
 
   /**
@@ -43,16 +52,16 @@ Component({
      */
     loadImg: function(e) {
       this.calcHeight(() => {
-        if (this.properties.imgs.length <= 0) {
+        if (this.data.images.length <= 0) {
           return;
         }
         if (this.data.leftHeight <= this.data.rightHeight) {
-          leftImgs.push(this.properties.imgs.shift());
+          leftImgs.push(this.data.images.shift());
           this.setData({
             leftImgs: leftImgs
           })
         } else {
-          rightImgs.push(this.properties.imgs.shift());
+          rightImgs.push(this.data.images.shift());
           this.setData({
             rightImgs: rightImgs
           })
@@ -84,9 +93,52 @@ Component({
     /**
      * 点击单个item
      */
-    toDetail: function(e) {
-      console.log(e);
-      this.triggerEvent("todetail", e);
+    tapItem: function(e) {
+      const id = e.currentTarget.dataset.id;
+      if (this.properties.choice) {
+        const arr1 = this.updateImgs(this.data.leftImgs, id);
+        const arr2 = this.updateImgs(this.data.rightImgs, id);
+        this.setData({
+          leftImgs: arr1,
+          rightImgs: arr2
+        })
+        this.triggerEvent('choiced', this.data.choicedId);
+      } else {
+        this.triggerEvent('todetail', id);
+      }
+    },
+
+    /**
+     * 选中后更新数据
+     */
+    updateImgs: function(data, id) {
+      const arr = data.map(item => {
+        if (item.id === id) {
+          if (!item.choiced) {
+            item.choiced = true;
+            this.data.choicedId.push(id);
+          } else {
+            item.choiced = false;
+            const index = this.data.choicedId.indexOf(id);
+            this.data.choicedId.splice(index, 1);
+          }
+        }
+        return item;
+      })
+      return arr;
+    },
+
+    imgsChange: function() {
+      leftImgs = [];
+      rightImgs = [];
+      this.data.images.map(item => {
+        item.choice = this.properties.choice;
+        item.choiced = false;
+      });
+      leftImgs.push(this.data.images.shift());
+      this.setData({
+        leftImgs: leftImgs
+      })
     }
   }
 })

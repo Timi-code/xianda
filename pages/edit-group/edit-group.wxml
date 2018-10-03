@@ -1,0 +1,3 @@
+<!--pages/edit-group/edit-group.wxml-->
+
+<edit-group-form src="{{src}}" temperature="{{temperature}}" temperatureArray="{{temperatureArray}}" temperatureIndex="{{temperatureIndex}}" tags="{{tags}}" disabled="{{saving}}" more="{{true}}" bindsave="save" binddelete="deleteGroup"></edit-group-form>

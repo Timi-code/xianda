@@ -1,0 +1,18 @@
+<!--pages/single-group-add/single-group-add.wxml-->
+<view class="page">
+  <!-- 搜索 -->
+  <view class="search-box">
+    <view class="search-input" bindtap="search">
+      <icon type="search" size="18" class="icon" />
+      <text class="search-text">搜索</text>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class="lists" wx:if="{{notes}}">
+    <waterfall-index imgs="{{notes}}" choice="{{true}}" bindchoiced="choiced"></waterfall-index>
+  </view>
+</view>
+
+<view class="bottom-bar">
+  <text bindtap="submit" class="{{selected.length <= 0 ? 'disabled' : ''}}">确定({{selected.length}})</text>
+</view>

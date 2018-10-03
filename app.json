@@ -1,10 +1,15 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/add-group/add-group",
+    "pages/edit-group/edit-group",
     "pages/group-detail/group-detail",
+    "pages/group-single-add/group-single-add",
     "pages/search/search",
     "pages/single/single",
+    "pages/add-single/add-single",
     "pages/single-detail/single-detail",
+    "pages/single-group-add/single-group-add",
     "pages/mine/mine",
     "pages/editor-img/editor-img",
     "pages/edit-single/edit-single",

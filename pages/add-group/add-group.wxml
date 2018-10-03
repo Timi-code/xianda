@@ -1,0 +1,3 @@
+<!--pages/add-group/add-group.wxml-->
+
+<add-group-form src="{{src}}" temperature="{{temperature}}" temperatureArray="{{temperatureArray}}" temperatureIndex="{{temperatureIndex}}" tags="{{tags}}" disabled="{{saving}}" bindsave="save"></add-group-form>

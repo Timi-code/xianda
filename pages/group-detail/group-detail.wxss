@@ -48,7 +48,7 @@
 /* 加入的单品 */
 
 .page .single {
-  padding: 0 32rpx;
+  padding: 0 30rpx;
 }
 
 .page .single .title {
@@ -60,7 +60,6 @@
 
 .page .single .content {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -68,4 +67,6 @@
   width: 226rpx;
   height: 226rpx;
   margin-top: 4rpx;
+  margin-left: 4rpx;
+  margin-right: 4rpx;
 }

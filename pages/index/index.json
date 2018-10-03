@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "waterfall-index": "/components/waterfall/waterfall"
-  }
+    "waterfall-index": "/components/waterfall/waterfall",
+    "none": "/components/none/none"
+  },
+  "enablePullDownRefresh": true
 }

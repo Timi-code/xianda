@@ -1,0 +1,35 @@
+<!--components/add-group-form/add-group-form.wxml-->
+
+<view class="page">
+  <view class="selector-box" bindtap="selectImg">
+    <image src="{{src}}" class="select-img"></image>
+    <image src="{{arrow}}" class="arrow"></image>
+  </view>
+
+  <view class="label">标签</view>
+  <view class="tag-box" bindtap="setTags">
+    <view class="tags {{tags.length > 0 ? 'color':''}}">{{tags.length > 0 ? tags : '设置几个标签，方便之后查找'}}</view>
+    <image src="{{arrow}}" class="arrow"></image>
+  </view>
+
+  <view class="picker-box">
+    <view class="label">适宜气温</view>
+    <picker bindchange="bindPickerChange" value="{{temperatureIndex}}" range="{{temperatureArray}}">
+      <view class="picker">
+        <view wx:if="{{temperatureIndex === null}}" class="holder">请选择搭配适宜的气温</view>
+        <view wx:else class="selected">{{temperatureArray[temperatureIndex]}}</view>
+        <image src="{{arrow}}" class="arrow"></image>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 更多 -->
+  <view class="more-box" wx:if="{{more}}" bindtap="selectMore">
+    <view class="label">更多</view>
+    <image src="{{arrow}}" class="arrow"></image>
+  </view>
+
+  <view class="submit-box">
+    <button type="primary" disabled="{{disabled}}" bindtap="complete" hover-class="button-hover"> 完成 </button>
+  </view>
+</view>

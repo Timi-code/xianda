@@ -68,7 +68,6 @@ Page({
 
   change: function($event) {
     // wx.setStorageSync('tags', $event.detail.tags);
-    console.log($event);
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2];
     prevPage.setData({

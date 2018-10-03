@@ -15,11 +15,14 @@ const formatNumber = n => {
 }
 
 const urlConfig = {
-  host: 'http://101.200.56.63/api',
-  token: '/auth/wechat/access-token',
-  register: '/auth/wechat/register',
-  wear: '/wear',
-  clothing: '/clothing',
+  host: 'http://101.200.56.63/api', // 域名
+  domain: 'http://pe7ebbu4t.bkt.clouddn.com', // 图片域名
+  token: '/auth/wechat/access-token', // 获取token
+  register: '/auth/wechat/register', // 注册
+  systemConf: '/system/config', // 系统配置
+  wear: '/wear', // 搭配
+  clothing: '/clothing', // 单品
+  uploadImg: '/file/token/images', // 获取上传图片token
 }
 
 function request(params) {
@@ -46,7 +49,13 @@ function request(params) {
     method: method,
     dataType: dataType,
     responseType: responseType,
-    success: success,
+    success: res => {
+      if (res.data.code === 200) {
+        success(res.data);
+      } else {
+        fail(res.data.message);
+      }
+    },
     fail: fail,
     complete: complete
   });
@@ -76,7 +85,7 @@ function register(cb) {
 /**
  * 登录
  */
-function login(cb) {
+function getToken(cb) {
   wx.login({
     success: res => {
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -88,6 +97,7 @@ function login(cb) {
         success: function(result) {
           if (result.data.code === 200) {
             wx.setStorageSync('token', 'Bearer ' + result.data.data.token);
+            wx.setStorageSync('exprieDate', new Date(result.data.data.expire_at).getTime() - 60 * 60);
             if (cb) {
               cb();
             }
@@ -103,5 +113,5 @@ module.exports = {
   request: request,
   urlConfig: urlConfig,
   register: register,
-  login: login
+  getToken: getToken
 }

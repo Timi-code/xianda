@@ -1,42 +1,30 @@
 // pages/single-detail/single-detail.js
+
+const network = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    src: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-    tags: ['3行文字这就是一个很长', '3行文字这就是一个很长', '3行文字这就是一个很长', '3行文字这就是一个很长', '1232135', '123120000', '1123123', '1232135', '123120000'],
+    id: null,
+    src: null,
+    tags: null,
     moreImg: '/assets/images/more-circle.png',
-    notes: [{
-        url: 'http://f10.baidu.com/it/u=121654667,1482133440&fm=72',
-        tags: ['1', '标签2', '标签3']
-      },
-      {
-        url: 'http://img3.imgtn.bdimg.com/it/u=1417732605,3777474040&fm=26&gp=0.jpg',
-        tags: ['2', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['3', '标签2', '标签3']
-      }, {
-
-        url: 'http://img2.imgtn.bdimg.com/it/u=1561660534,130168102&fm=26&gp=0.jpg',
-        tags: ['4', '标签2', '标签3']
-      },
-      {
-        url: 'http://img4.imgtn.bdimg.com/it/u=2748975304,2710656664&fm=26&gp=0.jpg',
-        tags: ['5', '标签2', '标签3']
-      }
-    ],
-    scrollTop: null // 判断设置title的高度
+    notes: null,
+    scrollTop: null, // 判断设置title的高度
+    reload: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      id: options.id
+    })
+    this.getDetail(options.id);
   },
 
   /**
@@ -56,7 +44,15 @@ Page({
       _self.setData({
         scrollTop: res.height
       })
-    }).exec()
+    }).exec();
+
+    if (this.data.reload) {
+      _self.setData({
+        notes: null,
+        reload: false
+      })
+      this.getDetail(this.data.id);
+    }
   },
 
   /**
@@ -94,6 +90,9 @@ Page({
 
   },
 
+  /**
+   * 页面滚动监听事件
+   */
   onPageScroll: function(e) {
     if (e.scrollTop >= this.data.scrollTop) {
       wx.setNavigationBarTitle({
@@ -103,13 +102,39 @@ Page({
   },
 
   /**
+   * 获取详情
+   */
+  getDetail: function(id) {
+    const _self = this;
+    network.request({
+      url: network.urlConfig.clothing + '/' + id,
+      success: function(res) {
+        _self.setData({
+          src: res.data.images,
+          tags: res.data.tags,
+          notes: res.data.wear.data
+        })
+      }
+    })
+  },
+
+  /**
    * 点击出现更多选项
    */
   actionSheet: function(e) {
+    const _self = this;
     wx.showActionSheet({
-      itemList: ['加入搭配', '编辑'],
+      itemList: ['加入搭配', '编辑', '取消'],
       success: function(res) {
-        console.log(res.tapIndex)
+        if (res.tapIndex === 0) {
+          wx.navigateTo({
+            url: `/pages/single-group-add/single-group-add?id=${_self.data.id}`,
+          })
+        } else if (res.tapIndex === 1) {
+          wx.navigateTo({
+            url: `/pages/edit-single/edit-single?id=${_self.data.id}`,
+          })
+        }
       },
       fail: function(res) {
         console.log(res.errMsg)

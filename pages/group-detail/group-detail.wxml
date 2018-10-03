@@ -1,29 +1,26 @@
 <!--pages/group-detail/group-detail.wxml-->
 <view class="page">
 
-    <!-- 单品信息 -->
-    <view class="group-info">
-        <view class="group-img">
-            <image src="{{src}}" />
-        </view>
-        <view class="group-tag-box">
-            <view class="group-tag">
-                <text wx:for="{{tags}}" wx:key=""><text class="sharp">#</text>{{item}} </text>
-            </view>
-            <view class="group-add-single">
-                <image src="{{moreImg}}" bindtap="actionSheet"/>
-            </view>
-        </view>
+  <!-- 单品信息 -->
+  <view class="group-info">
+    <view class="group-img">
+      <image src="{{src}}" />
     </view>
-
-    <!-- 加入的单品 -->
-    <view class="single">
-      <view class="title">加入的单品 (5)</view>
-      <view class="content">
-        <image src="{{src}}"></image>
-        <image src="{{src}}"></image>
-        <image src="{{src}}"></image>
-        <image src="{{src}}"></image>
+    <view class="group-tag-box">
+      <view class="group-tag">
+        <text wx:for="{{tags}}" wx:key=""><text class="sharp">#</text>{{item}} </text>
+      </view>
+      <view class="group-add-single">
+        <image src="{{moreImg}}" bindtap="actionSheet" />
       </view>
     </view>
+  </view>
+
+  <!-- 加入的单品 -->
+  <view class="single">
+    <view class="title">加入的单品 ({{clothing.length}})</view>
+    <view class="content" wx:if="{{clothing.length > 0}}">
+      <image src="{{item.images}}" wx:for="{{clothing}}"></image>
+    </view>
+  </view>
 </view>

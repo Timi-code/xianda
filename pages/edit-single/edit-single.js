@@ -1,30 +1,34 @@
 // pages/edit-single/edit-single.js
+
+const network = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    src: '/assets/images/single.png',
-    arrow: '/assets/images/arrow-right.png',
-    temperatureArray: ['25°↑', '15° ~ 20°', '4° ~ 10°', '0° ~ 8°', ' ~ 12°↓'],
-    temperatureIndex: null,
-    classArray: ['上身装', '下身装', '连身装', '鞋', '包、袋'],
+    id: null,
+    src: null,
+    classes: null,
+    classArray: null,
     classIndex: null,
-    step: -1,
-    tags: []
+    tags: [],
+    saving: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.src) {
+
+    // 获取id
+    if (options.id) {
       this.setData({
-        src: options.src ? options.src : '',
-        step: options.step ? options.step : -1
+        id: options.id
       })
+      this.getSingleDetail();
     }
+    this.getSysConf();
   },
 
   /**
@@ -77,6 +81,43 @@ Page({
   },
 
   /**
+   * 获取系统配置
+   */
+  getSysConf: function() {
+    const _self = this;
+    network.request({
+      url: network.urlConfig.systemConf,
+      success: function(res) {
+        if (res.code === 200) {
+          const data = res.data;
+          const classArray = data.clothing_category.map(item => item.name);
+          _self.setData({
+            classes: data.clothing_category,
+            classArray: classArray
+          })
+        }
+      }
+    })
+  },
+
+  // 获取单品详情
+  getSingleDetail: function() {
+    const _self = this;
+    network.request({
+      url: network.urlConfig.clothing + '/' + _self.data.id,
+      success: function(res) {
+        if (res.code === 200) {
+          _self.setData({
+            src: res.data.images,
+            tags: res.data.tags,
+            classIndex: _self.data.classes.findIndex(item => item.id === res.data.category_id)
+          })
+        }
+      }
+    })
+  },
+
+  /**
    * 改变图片
    */
   changeImg: function(e) {
@@ -86,7 +127,7 @@ Page({
       sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        console.log(res);
+        console.log('选择的文件：', res);
         var tempFilePaths = res.tempFilePaths
         wx.navigateTo({
           url: `/pages/editor-img/editor-img?path=${tempFilePaths}`,
@@ -123,8 +164,104 @@ Page({
     })
   },
 
+  /**
+   * 保存单品
+   */
   complete: function(e) {
-    console.log(e);
-  }
+    const _self = this;
+    const data = {
+      images: this.data.src,
+      tags: this.data.tags,
+      category_id: this.data.clothing_category[this.data.classIndex].id
+    }
+    wx.showLoading({
+      title: '修改单品中',
+    })
+    network.request({
+      url: network.urlConfig.clothing + '/' + _self.data.id,
+      method: 'PUT',
+      data: data,
+      success: function(res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 2000,
+          success: function() {
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 2000)
+          }
+        })
+      }
+    })
+  },
 
+  /**
+   * 完成事件
+   */
+  save: function(e) {
+    const _self = this;
+    this.setData({
+      saving: true
+    })
+    // 获取页面信息
+    const pages = getCurrentPages();
+    const prevPage = pages[pages.length - 2];
+    wx.showLoading({
+      title: '修改单品中',
+    })
+    network.request({
+      url: network.urlConfig.clothing + '/' + _self.data.id,
+      method: 'PUT',
+      data: e.detail,
+      success: function(data) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '修改成功',
+          duration: 1500
+        })
+        // 设置前页刷新
+        prevPage.setData({
+          reload: true
+        })
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1500)
+      },
+      fail: function(err) {
+        wx.showToast({
+          title: err,
+          icon: 'none'
+        })
+        this.setData({
+          saving: true
+        })
+      }
+    })
+  },
+
+  /**
+   * 删除单品
+   */
+  deleteSingle: function() {
+    const _self = this;
+    network.request({
+      url: network.urlConfig.clothing + '/' + _self.data.id,
+      method: 'DELETE',
+      success: function(res) {
+        if (res.code === 200) {
+          wx.showToast({
+            title: '删除成功',
+          })
+
+          setTimeout(() => {
+            wx.reLaunch({
+              url: '/pages/single/single'
+            })
+          }, 1500);
+        }
+      }
+    })
+  }
 })

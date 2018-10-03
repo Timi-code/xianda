@@ -1,0 +1,35 @@
+<!--components/add-single-form/add-single-form.wxml-->
+
+<view class="page">
+  <view class="selector-box" bindtap="selectImg">
+    <image src="{{src}}" class="select-img"></image>
+    <image src="{{arrow}}" class="arrow"></image>
+  </view>
+
+  <view class="picker-box">
+    <view class="label">单品品类</view>
+    <picker bindchange="bindClassChange" value="{{classIndex}}" range="{{classArray}}">
+      <view class="picker">
+        <view wx:if="{{classIndex === null}}" class="holder">请选择单品的品类</view>
+        <view wx:else class="selected">{{classArray[classIndex]}}</view>
+        <image src="{{arrow}}" class="arrow"></image>
+      </view>
+    </picker>
+  </view>
+
+  <view class="label">标签</view>
+  <view class="tag-box" bindtap="setTags">
+    <view class="tags {{tags.length > 0 ? 'color':''}}">{{tags.length > 0 ? tags : '设置几个标签，方便之后查找'}}</view>
+    <image src="{{arrow}}" class="arrow"></image>
+  </view>
+
+  <!-- 更多 -->
+  <view class="more-box" wx:if="{{more}}" bindtap="selectMore">
+    <view class="label">更多</view>
+    <image src="{{arrow}}" class="arrow"></image>
+  </view>
+
+  <view class="submit-box">
+    <button type="primary" disabled="{{disabled}}" bindtap="complete" hover-class="button-hover"> 完成 </button>
+  </view>
+</view>
