@@ -16,7 +16,7 @@ const formatNumber = n => {
 
 const urlConfig = {
   host: 'http://101.200.56.63/api', // 域名
-  domain: 'http://pe7ebbu4t.bkt.clouddn.com', // 图片域名
+  domain: 'http://image.yii2.tv', // 图片域名
   token: '/auth/wechat/access-token', // 获取token
   register: '/auth/wechat/register', // 注册
   systemConf: '/system/config', // 系统配置
