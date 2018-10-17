@@ -1,42 +1,47 @@
 /* pages/index/index.wxss */
 
 .page {
-    padding: 20rpx 0;
+  padding: 0 0 60rpx;
 }
 
 /* 搜索 */
 
 .page .search-box {
-    width: 722rpx;
-    height: 72rpx;
-    background-color: #F7F7F7;
-    margin: 0 auto;
-    border-radius: 10rpx;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 12rpx 0;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #fff;
+  z-index: 1;
 }
 
 .page .search-box .search-input {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  width: 722rpx;
+  height: 72rpx;
+  border-radius: 10rpx;
+  display: flex;
+  background-color: #f7f7f7;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .page .search-box .search-input .icon {
-    margin: 0 20rpx;
+  margin: 0 20rpx;
 }
 
 .page .search-box .search-input .search-text {
-    font-size: 32rpx;
-    color: #ACACAD;
+  font-size: 32rpx;
+  color: #acacad;
 }
-
 
 .page .lists {
   padding: 0 32rpx;
 }
 
 /* 添加 */
+
 .page .add {
   position: fixed;
   right: 32rpx;

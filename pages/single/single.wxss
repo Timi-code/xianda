@@ -1,7 +1,15 @@
 /* pages/single/single.wxss */
 
 .page {
-  padding: 20rpx 0;
+  padding:0 0 20rpx;
+}
+
+.page .static-section {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1;
 }
 
 /* 搜索 */
@@ -46,6 +54,7 @@
 
 .tabs .item.active {
   color: #000000;
+  font-weight: bold;
   border-bottom: 2px solid #000000;
 }
 

@@ -119,12 +119,17 @@ Page({
           })
         }
       },
-      fail: function(res) {
-        wx.showToast({
-          title: '加入失败',
-        })
-        console.log(res.errMsg)
-      }
+      fail: function() {}
+    })
+  },
+
+  /**
+   * 查看照片
+   */
+  checkTheSingle: function(e) {
+    const _self = this;
+    wx.navigateTo({
+      url: `/pages/check-the-single/check-the-single?id=${e.currentTarget.dataset.id}&wearid=${_self.data.id}&src=${e.currentTarget.dataset.src}&tags=${e.currentTarget.dataset.tags}`
     })
   }
 })

@@ -1,0 +1,15 @@
+/* components/loading/loading.wxss */
+
+.loading {
+  text-align: center;
+  font-size: 30rpx;
+  color: #79797a;
+}
+
+.loading image {
+  position: relative;
+  top: -2rpx;
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align: text-bottom;
+}

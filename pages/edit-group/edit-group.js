@@ -147,10 +147,10 @@ Page({
           reload: true
         })
         setTimeout(() => {
-          // wx.navigateBack()
-          wx.redirectTo({
-            url: `/pages/group-detail/group-detail?id=${data.data.id}`,
-          })
+          wx.navigateBack()
+          // wx.redirectTo({
+          //   url: `/pages/group-detail/group-detail?id=${_self.data.id}`,
+          // })
         }, 2000)
       },
       fail: function(err) {

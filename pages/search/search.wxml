@@ -5,10 +5,28 @@
   <!-- 搜索 -->
   <view class="search-box">
     <view class="search-input">
-      <icon type="search" size="18" class="icon"/>
-      <input type="text" placeholder="搜索" focus/>
+      <icon type="search" size="18" class="icon" />
+      <input confirm-type="search" placeholder="搜索" focus bindconfirm="confirm" />
     </view>
-    <view class="cancel" bindtap="cancel">取消</view>  
+    <view class="cancel" bindtap="cancel">取消</view>
   </view>
+  <!-- 搜索历史 -->
+
+  <!-- 导航 -->
+  <view class="tabs" wx:if="{{dirty}}">
+    <view class="item {{activeTabIndex ===  0 ? 'active' : ''}}" bindtap="changeTab" data-index="0">搭配</view>
+    <view class="item {{activeTabIndex ===  1 ? 'active' : ''}}" bindtap="changeTab" data-index="1">单品</view>
+  </view>
+
+  <!-- 无搜索结果 -->
+  <view class="none-result" wx:if="{{noneResult && !loading}}">
+    没有搜索到相关搭配 or 单品
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="lists">
+    <waterfall wx:if="{{data}}" imgs="{{data}}" bindtodetail="toDetail"></waterfall>
+  </view>
+  <loading wx:if="{{loading}}"></loading>
 
 </view>

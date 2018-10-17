@@ -10,12 +10,12 @@ const formatTime = date => {
 }
 
 const formatNumber = n => {
-  n = n.toString()
+  n = n.toString();
   return n[1] ? n : '0' + n
 }
 
 const urlConfig = {
-  host: 'http://101.200.56.63/api', // 域名
+  host: 'https://xianda.yii2.tv/api', // 域名
   domain: 'http://image.yii2.tv', // 图片域名
   token: '/auth/wechat/access-token', // 获取token
   register: '/auth/wechat/register', // 注册

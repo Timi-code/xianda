@@ -1,9 +1,10 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/add-group/add-group",
     "pages/edit-group/edit-group",
     "pages/group-detail/group-detail",
+    "pages/check-the-single/check-the-single",
     "pages/group-single-add/group-single-add",
     "pages/search/search",
     "pages/single/single",
@@ -15,30 +16,33 @@
     "pages/edit-single/edit-single",
     "pages/edit-tags/edit-tags"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "鲜搭",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 150
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "搭配",
-      "iconPath": "assets/images/groups.png",
-      "selectedIconPath": "assets/images/groups-active.png"
-    },
-    {
-      "pagePath": "pages/single/single",
-      "text": "单品",
-      "iconPath": "assets/images/single.png",
-      "selectedIconPath": "assets/images/single-active.png"
-    },
-    {
-      "pagePath": "pages/mine/mine",
-      "text": "我的",
-      "iconPath": "assets/images/mine.png",
-      "selectedIconPath": "assets/images/mine-active.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "搭配",
+        "iconPath": "assets/images/groups.png",
+        "selectedIconPath": "assets/images/groups-active.png"
+      },
+      {
+        "pagePath": "pages/single/single",
+        "text": "单品",
+        "iconPath": "assets/images/single.png",
+        "selectedIconPath": "assets/images/single-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/images/mine.png",
+        "selectedIconPath": "assets/images/mine-active.png"
+      }
+    ]
   }
 }

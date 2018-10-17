@@ -24,6 +24,9 @@
 .page .group-info .group-tag-box .group-tag {
   flex: 1;
   padding-bottom: 10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .page .group-info .group-tag-box .group-tag text {

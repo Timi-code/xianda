@@ -15,6 +15,6 @@
 
 
 <!-- 需要使用 button 来授权登录 -->
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<!-- <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> -->
 
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button> 
+<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button> -->

@@ -44,6 +44,15 @@
   border-radius: 10rpx;
 }
 
+.item-tag {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .item-tag view {
   float: left;
   font-size: 27rpx;

@@ -1,8 +1,5 @@
 // components/waterfall/waterfall.js
 
-var leftImgs = [],
-  rightImgs = [];
-
 Component({
   /**
    * 组件的属性列表
@@ -11,9 +8,9 @@ Component({
     imgs: {
       type: Array,
       value: [],
-      observer: function (newVal, oldVal, changedPath) {
+      observer: function(newVal, oldVal, changedPath) {
         this.data.images = newVal;
-        console.log('---------', newVal);
+        this.imgsChange();
       }
     },
     choice: {
@@ -29,19 +26,14 @@ Component({
     images: null,
     leftImgs: [],
     rightImgs: [],
-    choicedId: []
+    choicedId: [],
+    leftHeight: 0,
+    rightHeight: 0
   },
 
-  created: function() {
-    
-  },
+  created: function() {},
 
-  ready: function() {
-    this.imgsChange();
-    // this.setData({
-    //   leftImgs: [this.data.images[0]]
-    // })
-  },
+  ready: function() {},
 
   /**
    * 组件的方法列表
@@ -56,14 +48,14 @@ Component({
           return;
         }
         if (this.data.leftHeight <= this.data.rightHeight) {
-          leftImgs.push(this.data.images.shift());
+          this.data.leftImgs.push(this.data.images.shift());
           this.setData({
-            leftImgs: leftImgs
+            leftImgs: this.data.leftImgs
           })
         } else {
-          rightImgs.push(this.data.images.shift());
+          this.data.rightImgs.push(this.data.images.shift());
           this.setData({
-            rightImgs: rightImgs
+            rightImgs: this.data.rightImgs
           })
         }
       });
@@ -128,16 +120,18 @@ Component({
       return arr;
     },
 
+    /**
+     * 有数据进入执行
+     */
     imgsChange: function() {
-      leftImgs = [];
-      rightImgs = [];
       this.data.images.map(item => {
         item.choice = this.properties.choice;
         item.choiced = false;
       });
-      leftImgs.push(this.data.images.shift());
+
+      this.data.leftImgs.push(this.data.images.shift());
       this.setData({
-        leftImgs: leftImgs
+        leftImgs: this.data.leftImgs
       })
     }
   }

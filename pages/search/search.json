@@ -1,3 +1,8 @@
 {
+  "usingComponents": {
+    "waterfall": "/components/waterfall/waterfall",
+    "none": "/components/none/none",
+    "loading": "/components/loading/loading"
+  },
   "navigationBarTitleText": "搜索"
 }

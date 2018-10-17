@@ -20,7 +20,7 @@
   <view class="single">
     <view class="title">加入的单品 ({{clothing.length}})</view>
     <view class="content" wx:if="{{clothing.length > 0}}">
-      <image src="{{item.images}}" wx:for="{{clothing}}"></image>
+      <image src="{{item.images}}" wx:for="{{clothing}}" bindtap="checkTheSingle" data-id="{{item.id}}" data-src="{{item.images}}" data-tags="{{item.tags}}"></image>
     </view>
   </view>
 </view>

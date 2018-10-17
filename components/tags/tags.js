@@ -24,6 +24,9 @@ Component({
    */
   methods: {
     bindConfirm: function($event) {
+      if (!$event.detail.value) {
+        return;
+      }
       let tags = this.data.tags;
       tags.push($event.detail.value);
       this.setData({
@@ -55,14 +58,16 @@ Component({
     /**
      * 取消选中
      */
-    tapbox: function ($event) {
+    tapbox: function($event) {
       this.setData({
         activeIndex: null
       })
     },
 
-    triggerChange: function(){
-      this.triggerEvent('change', {tags: this.data.tags});
+    triggerChange: function() {
+      this.triggerEvent('change', {
+        tags: this.data.tags
+      });
     }
   }
 })

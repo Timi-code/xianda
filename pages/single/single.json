@@ -1,8 +1,10 @@
 {
   "usingComponents": {
     "waterfall-single": "/components/waterfall/waterfall",
-    "none": "/components/none/none"
+    "none": "/components/none/none",
+    "loading": "/components/loading/loading"
   },
   "navigationBarTitleText": "单品",
+  "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true
 }

@@ -11,6 +11,8 @@ Page({
     active: 0,
     notes: null,
     onPull: false,
+    page: 1,
+    loading: false
   },
 
   /**
@@ -55,7 +57,6 @@ Page({
     this.setData({
       onPull: true
     })
-    wx.showNavigationBarLoading(); // 在标题栏中显示加载图标
     this.getLists();
   },
 
@@ -63,7 +64,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.setData({
+      loading: true,
+      page: ++this.data.page
+    })
+    this.getLists();
   },
 
   /**
@@ -78,7 +83,7 @@ Page({
    */
   search: function(e) {
     wx.navigateTo({
-      url: '/pages/search/search',
+      url: '/pages/search/search?source=single',
     })
   },
 
@@ -87,21 +92,36 @@ Page({
    */
   getLists: function(e) {
     const _self = this;
-    const data = this.data.active ? {category_id : this.data.active} : {};
+    const data = this.data.active ? {
+      category_id: this.data.active
+    } : {};
     network.request({
       url: '/clothing',
-      data: data,
+      data: { ...data,
+        page: _self.data.page
+      },
       success: function(res) {
-        _self.setData({
-          notes: res.data
-        })
         if (_self.data.onPull) {
           _self.setData({
-            onPull: false
+            onPull: false,
+            notes: null
           })
-          wx.hideNavigationBarLoading(); // 完成停止加载
           wx.stopPullDownRefresh();
         }
+
+        if (res.code === 200 && res.meta.pagination.count) {
+          _self.setData({
+            notes: res.data
+          })
+        }
+
+        const currentpage = res.meta.pagination.current_page;
+        const totalpage = res.meta.pagination.total_pages;
+
+        _self.setData({
+          loading: false,
+          page: _self.data.page >= totalpage ? totalpage : currentpage
+        })
       }
     })
   },

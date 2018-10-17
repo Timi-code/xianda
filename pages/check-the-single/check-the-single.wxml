@@ -1,0 +1,13 @@
+<!--pages/check-the-single/check-the-single.wxml-->
+
+<image class="single" src="{{src}}" mode="aspectFit"></image>
+
+<view class="tool-bar">
+  <view class="tags">
+    <text wx:for="{{tags}}">#{{item}} </text>
+    <text wx:for="{{tags}}">#{{item}} </text>
+  </view>
+  <view class="more">
+    <image src="{{more}}" mode="widthFix" bindtap="more"></image>
+  </view>
+</view>

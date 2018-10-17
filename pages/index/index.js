@@ -16,8 +16,10 @@ Page({
     notes: null,
     leftImgs: [],
     rightImgs: [],
+    page: 1,
     keywords: '',
-    reload: false
+    reload: false,
+    loading: false
   },
 
   /**
@@ -78,16 +80,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    wx.startPullDownRefresh(() => {
-      console.log('success');
-    })
+    this.getLists('restart');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getLists();
   },
 
   /**
@@ -100,19 +103,41 @@ Page({
   /**
    * 获取搭配列表
    */
-  getLists: function() {
+  getLists: function(type) {
     const _self = this;
+    this.setData({
+      loading: true
+    })
     network.request({
       url: network.urlConfig.wear,
       data: {
-        page: 0,
+        page: _self.data.page,
         page_size: 20,
         keywords: _self.data.keywords
       },
       success: function(res) {
+        // 如果type === restart 说明是下拉加载=》即需要停止
+        if (type && type === 'restart') {
+          wx.stopPullDownRefresh();
+          _self.setData({
+            notes: null
+          })
+        }
+
+        if (res.code === 200 && res.meta.pagination.count) {
+          _self.setData({
+            notes: res.data
+          })
+        }
+
+        const currentpage = res.meta.pagination.current_page;
+        const totalpage = res.meta.pagination.total_pages;
+
         _self.setData({
-          notes: res.data
+          loading: false,
+          page: _self.data.page >= totalpage ? totalpage : currentpage
         })
+
       }
     })
   },
@@ -122,20 +147,13 @@ Page({
    */
   search: function(e) {
     wx.navigateTo({
-      url: '/pages/search/search',
+      url: '/pages/search/search?source=index',
     })
   },
   addGroup: function(e) {
     wx.navigateTo({
       url: '/pages/add-group/add-group',
     })
-  },
-
-  /**
-   * 下拉
-   */
-  onPullDownRefresh: function() {
-    console.log('下拉');
   },
 
   /**
