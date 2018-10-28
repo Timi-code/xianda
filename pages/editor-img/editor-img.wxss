@@ -1,7 +1,7 @@
 /* pages/editor-img/editor-img.wxss */
 
 page {
-  height: 100%;
+  height: calc(100% - 128rpx);
 }
 
 .cropper-wrapper {

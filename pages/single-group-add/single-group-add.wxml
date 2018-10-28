@@ -1,4 +1,7 @@
 <!--pages/single-group-add/single-group-add.wxml-->
+
+<header leftType="close" title="选择搭配"></header>
+
 <view class="page">
   <!-- 搜索 -->
   <view class="search-box">

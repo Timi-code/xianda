@@ -1,10 +1,13 @@
 <!--pages/group-detail/group-detail.wxml-->
+
+<header leftType="back" title="搭配详情"></header>
+
 <view class="page">
 
   <!-- 单品信息 -->
   <view class="group-info">
     <view class="group-img">
-      <image src="{{src}}" />
+      <image src="{{src}}" mode="aspectFill" bindtap="previewImg"/>
     </view>
     <view class="group-tag-box">
       <view class="group-tag">
@@ -18,7 +21,7 @@
 
   <!-- 加入的单品 -->
   <view class="single">
-    <view class="title">加入的单品 ({{clothing.length}})</view>
+    <view class="title">添入的单品 ({{clothing.length}})</view>
     <view class="content" wx:if="{{clothing.length > 0}}">
       <image src="{{item.images}}" wx:for="{{clothing}}" bindtap="checkTheSingle" data-id="{{item.id}}" data-src="{{item.images}}" data-tags="{{item.tags}}"></image>
     </view>

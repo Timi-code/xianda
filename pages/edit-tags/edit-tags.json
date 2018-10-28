@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
+    "header": "/components/header/header",
     "tags": "/components/tags/tags"
   }
 }

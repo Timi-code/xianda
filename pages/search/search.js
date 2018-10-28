@@ -138,6 +138,10 @@ Page({
         keywords: this.data.keywords
       },
       success: function(res) {
+        _self.setData({
+          loading: false,
+          data: null
+        })
         if (res.code === 200 && res.meta.pagination.count) {
           _self.setData({
             data: res.data,
@@ -152,9 +156,6 @@ Page({
           })
         }
 
-        _self.setData({
-          loading: false
-        })
       }
     })
   },

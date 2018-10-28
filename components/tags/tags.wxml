@@ -4,6 +4,7 @@
   <view class="tags-box" bindtap="tapbox">
     <text class="tag {{activeIndex === index ? 'active':''}}" wx:for="{{tags}}" catchtap="deleteTag" data-index="{{index}}">{{item}}<text wx:if="{{activeIndex === index}}">×</text></text>
     <input class="tag-input" focus type="text" confirm-type="done" value="{{inputText}}" placeholder="添加标签" bindconfirm="bindConfirm"></input>
+    <text class="underline"></text>
   </view>
   <view class="history-box">
   </view>

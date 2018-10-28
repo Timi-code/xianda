@@ -72,6 +72,19 @@ Page({
   onReachBottom: function() {
 
   },
+  tapBack: function() {
+    wx.showModal({
+      title: '确定退出编辑？',
+      content: '退出后，当前编辑的内容不会被保存',
+      confirmText: '取消',
+      cancelText: '退出',
+      success: function(res) {
+        if (res.cancel) {
+          wx.navigateBack();
+        }
+      }
+    })
+  },
 
   /**
    * 用户点击右上角分享

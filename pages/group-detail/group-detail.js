@@ -107,7 +107,7 @@ Page({
   actionSheet: function(e) {
     const _self = this;
     wx.showActionSheet({
-      itemList: ['加入单品', '编辑', '取消'],
+      itemList: ['添入单品', '编辑', '取消'],
       success: function(res) {
         if (res.tapIndex === 0) {
           wx.navigateTo({
@@ -130,6 +130,16 @@ Page({
     const _self = this;
     wx.navigateTo({
       url: `/pages/check-the-single/check-the-single?id=${e.currentTarget.dataset.id}&wearid=${_self.data.id}&src=${e.currentTarget.dataset.src}&tags=${e.currentTarget.dataset.tags}`
+    })
+  },
+
+  /**
+   * 预览图片
+   */
+  previewImg: function(e) {
+    wx.previewImage({
+      current: this.data.src, // 当前显示图片的http链接
+      urls: [this.data.src] // 需要预览的图片http链接列表
     })
   }
 })

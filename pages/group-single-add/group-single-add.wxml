@@ -1,4 +1,7 @@
 <!--pages/group-single-add/group-single-add.wxml-->
+
+<header leftType="close" title="选择单品"></header>
+
 <view class="page">
   <!-- 搜索 -->
   <view class="search-box">

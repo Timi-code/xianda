@@ -1,0 +1,42 @@
+/* components/header/header.wxss */
+@import '../../app.wxss';
+
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 32rpx;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.bg-gray {
+  background-color: rgba(20, 20, 20 0.75) !important;
+}
+
+.header {
+  display: flex;
+  height: 96rpx;
+  font-size: 36rpx;
+}
+
+.header .left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.header .center {
+  display: flex;
+  align-items: center;
+  flex: 2;
+}
+
+.header .right {
+  flex: 1;
+}
+
+.text-center {
+  justify-content: center;
+}

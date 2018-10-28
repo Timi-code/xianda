@@ -21,7 +21,8 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "鲜搭",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance": 150
+    "onReachBottomDistance": 150,
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "list": [

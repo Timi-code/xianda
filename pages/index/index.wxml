@@ -1,4 +1,11 @@
 <!-- pages/index/index.wxml -->
+
+<header title="搭配">
+  <view slot="before" class="add" bindtap="addGroup">
+    <image src="/assets/images/circle-add.png"></image>
+  </view>
+</header>
+
 <view class="page">
   <!-- 搜索 -->
   <view class="search-box">
@@ -19,9 +26,4 @@
   <none class="none" target="group" wx:if="{{!notes || notes.length === 0}}"></none>
 
   <loading wx:if="{{loading}}"></loading>
-
-  <!-- 添加按钮 -->
-  <view class="add" bindtap="addGroup">
-    <image src="/assets/images/add.png"></image>
-  </view>
 </view>

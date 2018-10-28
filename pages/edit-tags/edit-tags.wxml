@@ -1,3 +1,5 @@
 <!--pages/edit-tags/edit-tags.wxml-->
 
+<header leftType="close" title="设置标签"></header>
+
 <tags tags="{{tags}}" bindchange="change"></tags>

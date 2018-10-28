@@ -1,4 +1,5 @@
 /* components/tags/tags.wxss */
+
 page {
   height: 100%;
 }
@@ -9,14 +10,33 @@ page {
 }
 
 .tags-box {
-  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 10rpx;
   border-bottom: 1px solid #bbb;
   padding-top: 10rpx;
 }
 
+.tags-box .underline {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  height: 2px;
+  background-color: green;
+  transform: scale(0.5);
+  transition: transform 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  z-index: 1;
+}
+
+.tags-box:focus-within .underline {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .tags-box .tag {
-  float: left;
   line-height: 40rpx;
   font-size: 24rpx;
   border: 1px solid green;
@@ -32,14 +52,17 @@ page {
 }
 
 .tags-box .tag-input {
-  float: left;
+  flex: 1 0 120rpx;
   min-height: unset;
   height: 40rpx;
   line-height: 40rpx;
-  width: auto;
   font-size: 24rpx;
-  border: 1px dotted green;
   border-radius: 20rpx;
   padding: 0 20rpx;
   margin-bottom: 10rpx;
 }
+
+/* .tag-input:focus + .underline {
+  opacity: 1;
+  transform: scale(1);
+} */

@@ -53,7 +53,11 @@ function request(params) {
       if (res.data.code === 200) {
         success(res.data);
       } else {
-        fail(res.data.message);
+        wx.showToast({
+          icon: 'none',
+          title: res.data.message
+        })
+        // fail(res.data.message);
       }
     },
     fail: fail,

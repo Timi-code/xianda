@@ -114,7 +114,7 @@ Page({
     })
   },
   onLoad(option) {
-    height = wx.getSystemInfoSync().windowHeight - 120;
+    height = wx.getSystemInfoSync().windowHeight - 187;
     if (option.path) {
       this.setData({
         'cropperOpt.src': option.path,

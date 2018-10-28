@@ -1,3 +1,5 @@
 <!--pages/add-group/add-group.wxml-->
 
+<header leftType="close" title="添加搭配"></header>
+
 <add-group-form src="{{src}}" temperature="{{temperature}}" temperatureArray="{{temperatureArray}}" temperatureIndex="{{temperatureIndex}}" tags="{{tags}}" disabled="{{saving}}" bindsave="save"></add-group-form>

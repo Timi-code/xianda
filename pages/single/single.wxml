@@ -1,4 +1,9 @@
 <!--pages/single/single.wxml-->
+<header title="单品">
+  <view slot="before" class="add" bindtap="addSingle">
+    <image src="/assets/images/add.png"></image>
+  </view>
+</header>
 <view class="page">
 
   <view class="static-section">
@@ -18,6 +23,7 @@
       <view class="item {{active ===  2 ? 'active' : ''}}" bindtap="changeTab" data-index="2">下身装</view>
       <view class="item {{active ===  3 ? 'active' : ''}}" bindtap="changeTab" data-index="3">连身装</view>
       <view class="item {{active ===  4 ? 'active' : ''}}" bindtap="changeTab" data-index="4">鞋</view>
+      <view class="item {{active ===  5 ? 'active' : ''}}" bindtap="changeTab" data-index="5">包、袋</view>
     </view>
 
     <view style="height: 8rpx; background-color: #ddd;"></view>
@@ -37,8 +43,4 @@
 
   <loading wx:if="{{loading}}"></loading>
 
-  <!-- 添加按钮 -->
-  <view class="add" bindtap="addSingle">
-    <image src="/assets/images/add.png"></image>
-  </view>
 </view>

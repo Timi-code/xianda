@@ -1,5 +1,7 @@
 <!--pages/check-the-single/check-the-single.wxml-->
 
+<header leftType="close" title="单品照片" bgGray="{{true}}"></header>
+
 <image class="single" src="{{src}}" mode="aspectFit"></image>
 
 <view class="tool-bar">

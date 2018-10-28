@@ -1,0 +1,16 @@
+<!--components/header/header.wxml-->
+<view style="height:128rpx;"></view>
+
+<view class="page {{bgGray ? 'bg-gray': ''}}">
+  <view class="header">
+    <view class="left text-center">
+      <view wx:if="{{leftType}}" class="header-left-wrap" bindtap="back">
+        <image wx:if="{{leftType=='back'}}" class="image-btn" src="/assets/images/black-back.png"></image>
+        <image wx:if="{{leftType=='close'}}" class="image-btn" src="/assets/images/back-close.png"></image>
+      </view>
+      <slot name="before"></slot>
+    </view>
+    <view class="center text-center">{{title}}</view>
+    <view class="right"></view>
+  </view>
+</view>

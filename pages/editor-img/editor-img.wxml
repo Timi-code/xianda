@@ -1,5 +1,7 @@
 <!--pages/editor-img/editor-img.wxml-->
 
+<header leftType="back" bgGray="{{true}}"></header>
+
 <import src="../../plugins/we-cropper/we-cropper.wxml" />
 
 <view class="cropper-wrapper">

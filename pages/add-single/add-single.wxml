@@ -1,3 +1,4 @@
 <!--pages/add-single/add-single.wxml-->
+<header leftType="close" title="添加单品"></header>
 
 <add-single-form src="{{src}}" classes="{{classes}}" classArray="{{classArray}}" classIndex="{{classIndex}}" tags="{{tags}}" disabled="{{saving}}" bindsave="save"></add-single-form>

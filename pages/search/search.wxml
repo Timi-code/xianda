@@ -1,4 +1,5 @@
 <!--pages/search/search.wxml-->
+<header leftType="back" title="搜索"></header>
 
 <view class="page">
 

@@ -40,5 +40,6 @@
 </view> -->
 
 
+<header leftType="close" title="编辑单品" back="{{false}}" bindback="tapBack"></header>
 
 <add-single-form src="{{src}}" classes="{{classes}}" classArray="{{classArray}}" classIndex="{{classIndex}}" tags="{{tags}}" disabled="{{saving}}" more="{{true}}" bindsave="save" binddelete="deleteSingle"></add-single-form>

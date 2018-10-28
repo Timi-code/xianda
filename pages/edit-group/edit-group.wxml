@@ -1,3 +1,5 @@
 <!--pages/edit-group/edit-group.wxml-->
 
+<header leftType="close" title="编辑搭配" back="{{false}}" bindback="tapBack"></header>
+
 <edit-group-form src="{{src}}" temperature="{{temperature}}" temperatureArray="{{temperatureArray}}" temperatureIndex="{{temperatureIndex}}" tags="{{tags}}" disabled="{{saving}}" more="{{true}}" bindsave="save" binddelete="deleteGroup"></edit-group-form>
